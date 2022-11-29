@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>tester</TITLE>
+<script type="text/JavaScript" language="JavaScript" src="../../js/ttips.js"></script>
+<link rel="stylesheet" href="../../css/general.css" type="text/css" />
+<link rel="stylesheet" href="../../css/ttips.css" type="text/css" />
+</HEAD>
+<BODY>
+<p>Tool Tips</p>
+<p>Tool tips are small pop-up boxes that appear when your cursor goes over an active piece of text. The text can be a link 
+  like <a href="http://news.bbc.co.uk" onMouseOver="ttip(this,'Here is the news');" onMouseOut="ttipoff();">the BBC news</a>
+  which is also an active link you can click, or a <span class="dotlink"  
+  onMouseOver="ttip(this,'No use clicking, this text goes nowhere.');" onMouseOut="ttipoff();">double-underline like this</span> 
+  if you use the stylesheet described below, or <span onMouseOver="ttip(this,'Surprise!');" 
+  onMouseOut="ttipoff();">anonymous text like this</span> - try hovering the mouse over the word 
+  <span onMouseOver="ttip(this,'I meant the OTHER word anonymous...');" 
+  onMouseOut="ttipoff();">anonymous</span>.</p>
+<p>
+Tool tips like this work in Internet Explorer and Firefox but have not been tested in other web browsers. So they are fine to use for a local project, but are not industrial strength code!
+<p>
+
+Now here's a
+<a href=# class="dotlink"
+	onClick="popup('http://www.gla.ac.uk','wait for it...')"
+	onMouseOver="ttip(this,'Here is a little pop-up story');"
+	onMouseOut='ttipoff();'>little</a>
+ story, to tell it, is...
+ <hr >
+
+<p>Steps to tool tips:</p>
+<ol>
+  <li>In  your HTML file you must link to a JavaScript file which has the code to do the tool tips and, optionally, to a style sheet by putting the following two lines in the HEAD of your document:
+    </li>
+    <blockquote>
+    <code>
+    &lt;script type=&quot;text/JavaScript&quot; language=&quot;JavaScript&quot; src=&quot;http://www.hatii.arts.gla.ac.uk/sww/js/ttips.js&quot;&gt;&lt;/script&gt;<br>
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;http://www.hatii.arts.gla.ac.uk/sww/css/ttips.css&quot; type=&quot;text/css&quot; /&gt;
+    </code>
+    </blockquote>
+  <li>Wherever you want a pop-up tool tip, <em>change</em> the web link from something like this:
+ 	<blockquote>
+  	<code>
+    &lt;a href=&quot;http://news.bbc.co.uk&quot;&gt;BBC News&lt;/a&gt;
+  	</code>
+	</blockquote>
+  <p>by adding commands to pop-up the tooltip when the mouse is over the link and tohide the tooltip when the mouse moves away:</p>
+  	<blockquote>
+  	<code>
+    &lt;a href=&quot;http://news.bbc.co.uk&quot;<strong>
+  	onMouseOver=&quot;ttip(this,'Here is the news');&quot;
+  	onMouseOut=&quot;ttipoff();&quot;</strong>&gt;BBC News&lt;/a&gt;
+  	</code>
+	</blockquote>
+</ol>
+  
+<p>Copy the part in <strong>bold</strong> above into your link <em>exactly</em> (substituting your own text for 'here is the news') and make sure you have the same pattern of single and double quotes.</p>
+<p>If you want a tool tip on a word that's not a link you need to surround the text with  &lt;span&gt; tags andoptionally give the class name &quot;dotlink&quot;. Contact me for more information!</p>
+<hr/>
+  <div class="mybox">
+  <p><strong>Option:</strong></p>
+  <p>The above method means your tool tips work only as long as you are connected to the internet and as long as the Hatii web pages are accessible. If you want to copy the two files to your own web server so you always have them, do this:</p>
+  <ul>
+    <li>create two folders called &quot;<font face="Courier New, Courier, mono">js</font>&quot; and &quot;<font face="Courier New, Courier, mono">css</font>&quot; in your web folder.</li>
+    <li>Into the folder &quot;<font face="Courier New, Courier, mono">js</font>&quot; copy the file <a href="http://www.hatii.arts.gla.ac.uk/sww/js/ttips.js">http://www.hatii.arts.gla.ac.uk/sww/js/ttips.js</a>. <br>
+    The best way to do this is to <em>right</em>-click the link and tell the dialog box to &quot;<strong>Save Target As...</strong>&quot; (in Internet Explorer) or if you use Firefox &quot;<strong>Save Link As...</strong>&quot; <font face="Courier New, Courier, mono">ttips.js</font> in the correct folder.</li>
+    <li>Into the folder &quot;<font face="Courier New, Courier, mono">css</font>&quot; copy the file <a href="http://www.hatii.arts.gla.ac.uk/sww/css/ttips.css">http://www.hatii.arts.gla.ac.uk/sww/css/ttips.css</a>.  <br>
+    The best way to do this is to <em>right</em>-click the link and tell the dialog box to &quot;<strong>Save Target As...</strong>&quot; (in Internet Explorer) or if you use Firefox &quot;<strong>Save Link As...</strong>&quot; <font face="Courier New, Courier, mono">ttips.css</font> in the correct folder.</li>
+    <li>Change the code given in step 1 above so it looks like this:
+      <blockquote><code>&lt;script type=&quot;text/JavaScript&quot; language=&quot;JavaScript&quot; src=&quot;js/ttips.js&quot;&gt;&lt;/script&gt;<br>
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/ttips.css&quot; type=&quot;text/css&quot; /&gt;</code></blockquote>
+      </li>
+  </ul>
+  
+</div>
+<address>Stephen Woodruff</address>
+
+</BODY>
+</HTML>

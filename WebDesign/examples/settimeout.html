@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>SetTimeOut example</title>
+<style type="text/css">
+</style>
+<script language="JavaScript">
+function init(){
+	var hellotimeout= setTimeout("alert('Hello, this is an example')", 3000);
+	var mytimer= setTimeout("changecols(0)",2000);
+}
+function changecols(n){
+	if (n==0){
+		document.getElementById("thing").style.backgroundColor= "red";
+		var mytimer= setTimeout("changecols(1)",2000);
+	} else {
+		document.getElementById("thing").style.backgroundColor= "yellow";
+		var mytimer= setTimeout("changecols(0)",2000);
+	}
+}
+</script>
+</head>
+
+<body onload="init();">
+<h1>SetTimeout() command</h1>
+To call a javaScript function at a time in milliseconds in the future use this:
+<pre>
+	var mytimer= setTimeout("thfn()",2000);
+</pre>
+<p>Where the parameters are the function to be called (in brackets) and the delay before its called, in milliseconds and the return value is an identifier that cancels the evaluation with the clearTimeout() method.
+<pre>
+	clearTimeout(mytimer);
+</pre>
+</p>
+<p>Control returns to the rendering engine during the delay, so this is a good way to see the effect of dynamic changes to the page which otherwise would not happen until after the whole JavaScript code had finished.</p>
+<p>This page called an init() function onload which looks like this:
+<pre id="thing">
+function init(){
+	var hellotimeout= setTimeout("alert('Hello, this is an example')", 3000);
+	var mytimer= setTimeout("changecols(0)",2000);
+}
+</pre>
+which is why the colours changed as you read this.
+<p>Much more on this at <a href="http://msdn.microsoft.com/library/default.asp?url=/workshop/author/dhtml/reference/methods/settimeout.asp">http://msdn.microsoft.com/library/default.asp?url=/workshop/author/dhtml/reference/methods/settimeout.asp</a>.
+</p>
+<address>Stephen Woodruff</address>
+
+</body>
+</html>

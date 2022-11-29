@@ -1,0 +1,46 @@
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" href="">
+<style type="text/css">
+</style>
+<script language="JavaScript">
+function randommax(n){
+// return a random integer between 0 and n
+	return Math.round(n*Math.random());
+}
+</script>
+</head>
+
+<body>
+<h1>Random Number Generation</h1>
+
+<p>the JavaScript random function,returns a random number between zero and one.
+<br/>To change it into a whole number first resize it by multiplying by the largest whol enumbr you want, then apply the round() function.
+</p>
+<p>To generate a whole number between 0 and 10
+<pre>
+    val= Math.round((Math.random()*10);
+</pre>
+To generate a whole number between 1 and 10, generate a numbr from 0 to 9 and add 1:
+<pre>
+    val= Math.round((Math.random()*9)+1;
+</pre>
+
+</p>
+<p>This form
+<form name="f1">
+generate a random whole number  between 0 and <input type= "text" name="max" id="max" value="10">
+<input type= "button" name="go" id="go" value="go" onClick="alert(randommax(f1.max.value));">
+</form>
+uses this function:
+<pre>
+    function randommax(n){
+    // return a random integer between 0 and n
+         return Math.round(n*Math.random());
+    }
+</pre>
+</p>
+<address>Stephen Woodruff</address>
+</body>
+</html>

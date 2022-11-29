@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Example of image resize</TITLE>
+<style type="text/css">
+	.floatleft {float:left;position:relative;}
+	.floatright {float:right;position:relative;}
+	.caption {font-size:x-small;font-weight:bold;}
+</style>
+<script language="JavaScript" src="../../js/imageResize.js"></script>
+</HEAD>
+
+<BODY>
+<h2>Example of image resize</h2>
+The first image, below, changes size if you hold the mouse button down on it, and reverts to its original size when you let the mouse key up. <br> The second image resizes on a roll-over. How to do it is described <a href="#howto">below</a>.
+
+<p>
+<h2>Hitman tried 'death by chocolate'  </h2>
+<span class="floatleft"><span class="floatleft" onMouseDown="imageGrow(this,500);" onMouseUp="imageShrink(this);"  onMouseOut="imageShrink(this);"><IMG SRC="cat.jpg
+" width="100" ALT="press and hold mouse button to enlarge">
+</span><br clear="all"/><span class="caption">Press and hold mouse button to enlarge</span></span>
+
+Sir William (left) tracked down the chocolate poisoner Tatam.
+A 1920s hitman tried to assassinate a senior policeman by sending him poisoned chocolates, records released by the National Archives have shown. Walter Tatam laced walnut whip chocolates with weedkiller in a plot to kill Metropolitan Police commissioner Brigadier-General Sir William Horwood.
+<br>
+Sir William thought the chocolates were a gift from his daughter Beryl and ate them - but survived the poisoning.
+He launched an investigation which eventually lead to Tatam's conviction.
+<p  clear="all">
+<hr>
+<h2>'Doped' </h2>
+<span class="floatleft" onMouseOver="imageGrow(this, 500);" onMouseOut="imageShrink(this);"><img name="DUMMY" width="100" src="fungus.jpg" /></span>
+Sir William had eaten the sweets - which arrived in a package at his office in November 1922 - after a hearty lunch of pork and apple sauce, bread and butter pudding and Guinness, the records showed.
+Within minutes of eating them, he was in agony, and called for a glass of brandy to help control the pain. His assistant Edith Drysdale insisted his condition had been caused by a musty walnut, but the police chief suspected foul play. He inspected the package the poisoned chocolates had come in with his magnifying glass. When he realised he may have been deliberately poisoned he said: "My God. Perhaps I have been doped!"
+<p clear="all">
+
+<hr>
+<h2>'Doped' </h2>
+<span class="floatright" onMouseOver="imageGrow(this, 500);" onMouseOut="imageShrink(this);"><img name="DUMMY" width="100" src="giraffe.jpg" alt="uni logo" /></span>
+Sir William had eaten the sweets - which arrived in a package at his office in November 1922 - after a hearty lunch of pork and apple sauce, bread and butter pudding and Guinness, the records showed.
+Within minutes of eating them, he was in agony, and called for a glass of brandy to help control the pain. His assistant Edith Drysdale insisted his condition had been caused by a musty walnut, but the police chief suspected foul play. He inspected the package the poisoned chocolates had come in with his magnifying glass. When he realised he may have been deliberately poisoned he said: "My God. Perhaps I have been doped!"
+<p clear="all">
+<a name="howto"><hr></a>
+To achieve these effects you need two references in the HEAD of your document:
+<pre>
+     &lt;script language="JavaScript" src="http://www.hatii.arts.gla.ac.uk/sww/js/imageResize.js">&lt;/script>
+     &lt;LINK href="http://www.hatii.arts.gla.ac.uk/sww/css/imageFloats.css" type=text/css rel=stylesheet />
+
+</pre>
+<p>Alternatively download those two files (right-click <a href="../../js/imageResize.js">the JS file</a> and <a href="../../css/imageFloats.css">the CSS file</a> and "Save as" to your web site and link to them directly:
+
+<pre>
+     &lt;script language="JavaScript" src="imageResize.js">&lt;/script>
+     &lt;LINK href="imageFloats.css" type=text/css rel=stylesheet />
+</pre>
+
+<p>For each image you want to react to a mouseover or a mouse press: use a normal image tag, specifying the width of the (small) image, then surround the image tag with a <b>span</b> tag with <tt>onMouseOver</tt> or <tt>onMouseDown</tt> event handlers.
+The rollover looks like this:
+
+<p>
+<pre>
+&lt;span class="floatleft" onMouseOver="imageGrow(this, 500);" onMouseOut="imageShrink(this);">
+<br>&nbsp;&nbsp;&nbsp;&lt;IMG SRC="gsh.jpg" width="200" ALT="GSH" />
+<br>&lt;/span>
+</pre><p>
+The press-mouse-button-to-enlarge is slightly more complicated: it needs an onMouseDown to initiate and both an onMouseUp and an onMouseLeave to return the image to normal, to catch both events:
+<p>
+<pre>&lt;span class="floatleft" onMouseDown="imageGrow(this,500);" onMouseUp="imageShrink(this);"  onMouseOut="imageShrink(this);">
+<br>&nbsp;&nbsp;&nbsp;&lt;IMG SRC="gsh.jpg" width="200" ALT="GSH" />
+<br>&lt;/span>
+</pre><p>
+<b>Note that <tt>imageGrow(this, 400)</tt> means change the WIDTH of the image from what it was to 400. the word "this" is required as shown. Use any other width size you wish, but the effects are quite odd if the target size is smaller than the original.</b>
+
+<p>
+Things get more complicated if you want a caption associated with the picture...
+<br>Add a caption <i>after the picture's closing span</i>, then surround the whole lot (ie the outer span) with <i>another</i> span.
+<pre>
+&lt;span class="floatleft">
+   &lt;span class="floatleft" onMouseOver="imageGrow(this, 500);" onMouseOut="imageShrink(this);">
+   &nbsp;&nbsp;&nbsp;&lt;IMG SRC="gsh.jpg" width="200" ALT="GSH" />
+   &lt;/span>
+   &lt;br clear="all"/>Press and hold mouse button to enlarge
+&lt;/span>
+</pre><p>
+Ask Stephen Woodruff or Ian Anderson for help if you need it.
+
+
+</BODY>
+</HTML>

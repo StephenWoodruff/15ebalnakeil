@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+
+<BODY>
+<h1>How to make active footnotes</h1>
+<h2>An example</h2>
+<h3>Preamble</h3>
+<p>To make this work you need to adjust the size of your window so you cannot
+  see the footnotes at the bottom of the page. The whole idea is that when the
+  user clicks on a footnote the screen scrolls until the reference is visible.
+  If the reference is already on screen - because the window is big enough to
+  show the source text and the footnote - then Internet Explorer won't bother
+  scrolling. And Internet Explorer can't scroll anymore once its shown the last
+  line of the file...there isn't any more to scroll to. You might also like to
+  look at the <a href="tipsDemo.html">pop-up tool tips example</a> which seem better suited to web reading.
+  You would need to combine them with conventional footnotes, though, as the
+  pop-ups
+  are invisible on a printed
+  page.</p>
+<h3>How it works</h3>
+<p>Surround your footnote marker with <b>&lt;sup></b> tags, so a footnote like this<sup>0</sup> for example results from code like <span style="border:blue solid 1px;"><tt>this&lt;sup>0&lt;/sup>.</tt></span> But of course it doesn't <i>do</i> anything.</p>
+<p>To make a superscript footnote marker active, surround it with an &lt;a href="#f0"> tag where the <tt>f0</tt> is the name of an anchor (see below<sup><a href="#f0">0</a></sup>) lower in the document. So the full thing becomes  <span style="border:blue solid 1px;"><tt>this&lt;sup>&lt;a href="#f0">0&lt;/a>&lt;/sup>.</tt></span>. Which renders like this<sup><a href="#f0">0</a></sup></p>
+
+<h3>In the following paragraphs the three footnote markers each refer to different footnotes</h3>
+<b>Note that unless the footnote identifies itself in some way the reader cannot tell to which of the footnotes they have scrolled. If you use the superscript form of footnote make sure there is a visual link (by number or name) between the footnote and its marker.</b>
+<p>
+The cost of identity deception to the information-seeking reader is potentially high. Misinformation, from poor nutritional advice to erroneous interpretations of drug-smuggling law, is easy to find on the net - and it is more likely to be believed when offered by one who is perceived to be an expert <a href="#f1">[Aronson 95]</a>. The limited identity cues may make people accept at face value a writer's claims of credibility: it may take a long time - and a history of dubious postings - until people start to wonder about the actual knowledge on a self-proclaimed expert.</p>
+<p>
+Providing affiliation and support is another important function of Usenet <sup><a href="#f2">2</a></sup>. Here, too, identity is central. The sense of shared community requires that the participants be sympathetic to the ideas around which the group is based; even if they disagree, there needs to be some fundamental common ground. Trust in the shared motivations and beliefs of the other participants - in other words, their social identity - is essential to the sense of community <sup><a href="#f3">3</a></sup>. </p>
+<hr>
+<b>footnotes</b>
+<dl>
+<dt><a name="f0"><b>0</b> Woodruff Tuesday</a>
+  <dd>This footnote has a "named anchor", that is it is surrounded by a tag like this <tt>&lt;a name="f0">...&lt;/a></tt><br>
+    You may wish to look at the source to see how these footnotes are formatted using a definition list.
+    <br>Its a good idea to point out to your user that he or she can click the browser's Back button to return where they were.
+<dt><a name="f1"><b>Aronson 95</b> </a>
+  <dd>Aronson, E. 1995. The Social Animal (7th edition). New York: W.H.Freeman and Co.
+
+<dt><a name="f2"><b>2</b> Sproull & Kiesler 91</a>
+  <dd>Sproull, L. & Kiesler, S. 1991. Connections: New Ways of Working in the Networked Organization. Cambridge: MIT Press.
+
+<dt><a name="f3"><b>3</b> Beniger 87</a>
+  <dd>Beniger, J.R. 1987. ``Personalization of mass media and the growth of pseudo community'', Communication Research 14, no. 3:252-371.
+</dl>
+
+<address>Stephen Woodruff</address>
+
+</BODY>
+</HTML>

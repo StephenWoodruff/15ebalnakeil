@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 3.2 Final//EN">
+<html>
+<head>
+<title></title>
+<style type="text/css">
+	h1 {text-align:center;}
+	.blue	{color:blue;}
+</style>
+<script language="JavaScript">
+</script>
+</head>
+
+<body>
+<h1>Test alert-confirm-prompt</h1>
+<form name="f1">
+<p>
+	Here's a button which calls the alert() function.  The result of the alert is displayed in another alert box (and its always "undefined").
+	<br/>
+	<input type= "button" name="" id="" value="alert" onClick="alert(alert('this is an alert: click OK \nand result will be displayed in another alert.\nMulti-lines because of \\n in its param.'));">
+	</input>
+</p>
+<p>
+	Here's a button which calls the confirm() function. The result of the confirm is displayed in an alert box ("true" if the user presses OK, "false" if the user presses Cancel).
+	<br/>
+	<input type= "button" name="" id="" value="confirm" onClick="alert(confirm('this is a confirm:  \nresult will be displayed in an alert.\nMulti-lines because of \\n in its param.'));">
+	</input>
+</p>
+<p>
+	Here's a button which calls the prompt() function. The result of the prompt is displayed in an alert box ("false" if the user presses Cancel, or if the user presses OK, the string the user has typed in (or the empty string if the user types nothing and presses OK)).
+	<br/>
+	<input type= "button" name="" id="" value="prompt" onClick="alert(prompt('this is a prompt:\nresult will be displayed in an alert.\nMulti-lines because of \\n in its param.'));">
+	</input>
+</p>
+
+</form>
+<p class="blue">
+	Note the parameter string for each of the alert() confirm() and prompt() contain one or more \n which act as a line break character, in the same way as &lt;br> does in HTML (alert boxes display text, not HTML).
+</p>
+<address>Stephen Woodruff</address>
+
+</body>
+</html>

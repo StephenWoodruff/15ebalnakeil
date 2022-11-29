@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<body>
+<html>
+<head>
+<style type="text/css">
+	.one { color:blue;width:200px;position:fixed;left:5px;top:90px;border:1pt solid blue;}
+	.two { color:blue;width:200px;position:fixed;top:60px;right:12px;border:1pt solid red;}
+</style>
+</head>
+<body>
+<h1>CSS position:fixed</h1>
+<p><b>Shrink this window so there is a vertical scroll bar, then scroll the window and see what happens to the two pieces of blue text which have position:fixed in their styles.</b></p>
+
+<p class="one">ONE HERE ONE HERE<br/>with position:fixed<br/>left:5px;top:90px;</p>
+<div class="two">TWO TWO TWO<br/>with position:fixed<br/>top:60px;right:12px;</div>
+<h3>CSS Position Values</h3>
+<table border="1" width="100%" cellpadding="2">
+  <tr>
+    <th align="left" valign="top">Value</th>
+    <th align="left" valign="top">Description</th>
+  </tr>
+  <tr>
+    <td valign="top">static</td>
+    <td valign="top">Default. An element with position: static always has the
+	position the normal flow of the page gives it (a static element ignores any
+	top, bottom, left, or right declarations)</td>
+  </tr>
+
+  <tr>
+    <td valign="top">relative</td>
+    <td valign="top">An element with position: relative moves an element relative to its normal position, so &quot;left:20&quot; adds 20 pixels to the element's LEFT position</td>
+  </tr>
+  <tr>
+    <td valign="top">absolute</td>
+
+    <td valign="top">An element with position: absolute is positioned at the
+	specified coordinates relative to its containing block. The element's position is specified with the
+      &quot;left&quot;, &quot;top&quot;, &quot;right&quot;, and &quot;bottom&quot; properties</td>
+  </tr>
+  <tr>
+    <td valign="top">fixed</td>
+
+    <td valign="top">An element with position: fixed is positioned at the
+	specified coordinates relative to the browser window. The element's position is specified with the
+      &quot;left&quot;, &quot;top&quot;, &quot;right&quot;, and &quot;bottom&quot; properties. The element remains at that position regardless of scrolling. Works in IE7 (strict mode)</td>
+  </tr>
+</table>
+<a href="../index.html">back to menu</a>
+</body>
+</html>

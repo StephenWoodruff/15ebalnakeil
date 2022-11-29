@@ -1,0 +1,86 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<head>
+<title>Event Bubbling</title>
+<link rel="stylesheet" type="text/css" href="">
+<style type="text/css">
+</style>
+<script language="JavaScript">
+</script>
+</head>
+
+<body onclick="alert('body got it');">
+<h1>Event Bubbling</h1>
+<p>When you put an event in a tag, for example  &lt;p onClick="alert('You clicked a paragraph');"&gt; which tags get and handle the event? Every tag is inside at least one (&lt;body&gt;) other tag, and unless a handling element explicitly deals with an event it can continue to "bubble up" to the enclosing elements. This illustrates what happens: try clicking in different places, and try it in different browsers.
+<br/>
+The following text has its code duplicated visibly at the bottom of the page.
+</p>
+
+<p onClick="alert('para got it');">
+<b>A.</b> This paragraph  has an onclick that does an alert.
+Here is some <b onClick="alert('b got it');">bold text which does an alert</b> and
+back out of the bold.
+</p>
+
+<p onClick="alert('para got it');return true;">
+<b>B.</b> This paragraph  has an onclick that does an alert and returns true.
+Here is some <b onClick="alert('b got it');return true;">bold text which does an alert and returns true</b>  and
+back out of the bold.
+</p>
+<p onClick="alert('para got it');return false;">
+<b>C.</b> This paragraph  has an onclick that does an alert and returns false.
+Here is some <b onClick="alert('b got it');return false;">bold text which does an alert and returns false</b>  and
+back out of the bold.
+</p>
+
+<p>
+<b>D.</b> This is in a paragraph with no handler at all.
+</p>
+
+<p onClick="alert('p got it');event.cancelBubble = true;">
+<b>E.</b> This paragraph  has an onclick that does an alert and then a "event.cancelBubble = true;".
+Here is some <b onClick="alert('b got it');event.cancelBubble = true;">bold text which does an alert and then "event.cancelBubble = true;"</b>  and back out of the bold.
+</p>
+
+<p onClick="alert('p got it');event.cancelBubble = true;">
+<b>F.</b> This paragraph  has an onclick that does an alert and then a "event.cancelBubble = true;".
+Here is some <b onClick="alert('b got it');">bold text which does an alert (and nothing more)</b>  and back out of the bold. Note that the event bubbles from the bold and is stopped after the para.
+</p>
+
+<hr/>
+<pre>
+&lt;body onclick="alert('body got it');"&gt;
+...
+&lt;p onClick="alert('para got it');">
+<b>A.</b> This paragraph  has an onclick that does an alert.
+Here is some &lt;b onClick="alert('b got it');">bold text which does an alert&lt;/b> and
+back out of the bold.
+&lt;/p>
+
+&lt;p onClick="alert('para got it');return true;">
+<b>B.</b> This paragraph  has an onclick that does an alert and returns true.
+Here is some &lt;b onClick="alert('b got it');return true;">bold text which does an alert and returns true&lt;/b>  and
+back out of the bold.
+&lt;/p>
+&lt;p onClick="alert('para got it');return false;">
+<b>C.</b> This paragraph  has an onclick that does an alert and returns false.
+Here is some &lt;b onClick="alert('b got it');return false;">bold text which does an alert and returns false&lt;/b>  and
+back out of the bold.
+&lt;/p>
+
+&lt;p>
+<b>D.</b> This is in a paragraph with no handler at all.
+&lt;/p>
+
+&lt;p onClick="alert('p got it');event.cancelBubble = true;">
+<b>E.</b> This paragraph  has an onclick that does an alert and then a "event.cancelBubble = true;".
+Here is some &lt;b onClick="alert('b got it');event.cancelBubble = true;">bold text which does an alert and then "event.cancelBubble = true;"&lt;/b>  and back out of the bold.
+&lt;/p>
+
+&lt;p onClick="alert('p got it');event.cancelBubble = true;">
+<b>F.</b> This paragraph  has an onclick that does an alert and then a "event.cancelBubble = true;".
+Here is some &lt;b onClick="alert('b got it');">bold text which does an alert (and nothing more)&lt;/b>  and back out of the bold. Note that the event bubbles from the bold and is stopped after the para.
+&lt;/p>
+<hr/>
+</pre>
+</body>
+</html>

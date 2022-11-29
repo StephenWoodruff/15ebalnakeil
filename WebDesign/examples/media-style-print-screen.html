@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+ <title>media type example - try printing this</title>
+ <style type="text/css">
+	@media print {
+		#t1  {width:100%;color:red;}
+		.t2 {width:50%;color:green;}
+		#sidemenu {visibility:hidden;}
+	}
+
+	@media screen {
+		#t1  {width:500px;color:blue;background-color:AliceBlue;}
+		.t2 {width:100px;color:blue;}
+		#sidemenu {visibility:visible;border:1pt groove red;float:left;padding:1em;margin-right:2em;}
+	}
+ </style>
+</head>
+
+<body>
+<h1>Screen and Print</h1>
+<h2>Using the @media command in style sheets</h2>
+<p>
+  The two tables have different sizes set in the style sheet according to whether the media type is print or screen.
+  <br/>
+  The "menu" to the left is visible on screen but not there when printed. Try "Print Preview" to see the difference without wasting paper. the style sheet from the head of this document is reproduced below to show how its done.
+  <br/>Steve.
+</p>
+<span id="sidemenu">
+ <b>Menu</b>
+ <br/>This is where a
+ <br/>menu would be
+ <br/>in the screen
+ <br/>but not print
+ <br/>version
+</span>
+<table border="1" id="t1">
+  <tr>
+	<td>one</td>	<td>two</td>
+  </tr>
+</table>
+<br/>
+<table border="1" class="t2">
+  <tr>
+	<td>buckle</td>	<td>my shoe</td>
+  </tr>
+</table>
+<br/>
+<span class="t2">
+  This is all remarkably easy once you see it.
+</span>
+<br clear="all">
+<hr/>
+Put this in the HEAD of the HTML file:
+<code><pre>
+ &lt;style type="text/css">
+	@media print {
+		#t1  {width:100%;color:red;}
+		#t2 {width:50%;color:green;}
+		#sidemenu {visibility:hidden;}
+	}
+
+	@media screen {
+		#t1  {width:500px;color:blue;background-color:AliceBlue;}
+		#t2 {width:100px;color:blue;}
+		#sidemenu {visibility:visible;border:1pt groove red;float:left;padding:1em;margin-right:2em;}
+	}
+ &lt;/style>
+</pre></code>
+and for each element name its id, for example:
+<code><pre>
+ &lt;span id="sidemenu">...&lt;/span>
+</pre></code>
+<address>Stephen Woodruff</address>
+</body>
+</HTML>

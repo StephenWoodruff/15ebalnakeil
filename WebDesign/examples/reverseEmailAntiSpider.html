@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<style type="text/css">
+.backwards {
+font-family: Verdana, Tahoma, Arial; Lucida, Sans-Serif;
+font-size:1.5em ;
+color: #800000;
+unicode-bidi: bidi-override;
+direction: rtl;
+}
+
+</style>
+</HEAD>
+
+<BODY>
+<h1>Hide your email address from robots, not from your readers</h1>
+
+from http://www.frontpagewebmaster.com/m-182541/tm.htm
+<br />
+ RE: You can use css to help defeat spam harvester botsbots
+ <br />- 2/14/2004 18:51:41
+ <br />The css code is this:
+<pre>
+.backwards {
+font-family: Verdana, Tahoma, Arial; Lucida, Sans-Serif;
+font-size:1.5em ;
+color: #800000;
+unicode-bidi: bidi-override;
+direction: rtl;
+}
+</pre>
+then replace the &#64; sign with its code, which is &amp;#64;
+<br/>
+The html code on your page would be this:
+
+<p>Why not email me at &lt;span
+
+class="backwards">moc.niamodelpmaxe&amp;#64;uoy&lt;/span></p>
+<p>
+Your code contains <i>moc.niamodelpmaxe&amp;#64;uoy</i> so any bot looking at the source sees that nonsense, and not an email address, whereas the user at a screen sees <i>you@example.com</i> which crucially  doesn't appear anywhere in the code.
+
+</p>
+Examples:
+<br />
+Here it is <span class="backwards">moc.niamodelpmaxe&#64;uoy</span> inside a span. A span takes up just the space it needs, so looks OK on the page.
+<br />
+If you don't put it in a span it will be right-justified on the page (as its right-to-left text) so if it were in a paragraph, for example, you'd need to add text-align:left; to the style sheet to avoid it looking like this: <p class="backwards">moc.niamodelpmaxe&#64;uoy</p>
+which is in its own paragraph.
+
+</BODY>
+</HTML>
