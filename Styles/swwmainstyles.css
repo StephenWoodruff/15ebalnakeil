@@ -1,0 +1,6 @@
+/* Styles for main sww page */
+
+.normal { padding: 3px; width:460px;
+	 			border: 1px dotted #fff; color:#696969; }
+.hover { padding: 3px; width:460px; background-color:#F5F5F5;
+	 			border: 1px dotted #22B1E1; color:#000000; }
