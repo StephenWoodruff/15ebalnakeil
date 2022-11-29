@@ -1,0 +1,65 @@
+.menu2{   margin-top : 1px;
+   padding-left : 30px;
+   background-color: #eeeeee;
+   background-image: url("http://www.langcent.arts.gla.ac.uk/images/indent-rt-triangle.gif");
+   background-repeat: no-repeat;
+   border-left:1px;
+     }
+.menu1{   margin-top : 1px;
+   padding-left : 12px;
+   background-color: #eeeeee;
+   background-image: url("http://www.langcent.arts.gla.ac.uk/images/rt-triangle.gif");
+   background-repeat: no-repeat;
+   border-left:1px;
+   border-top:'1px groove white';
+    }
+.menu3{   margin-top : 1px;
+   padding-left : 42px;
+   background-color: #eeeeee;
+   background-image: url("../images/indent2-rt-triangle.gif");
+   background-repeat: no-repeat;
+   border-left:1px;
+    }
+.menudivider{font-size:11px;color:#999999;padding-right:6px;}
+.menubreak{font-size:11px;color:#999999;padding-right:6px;}
+
+a:link   {font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";color:#000099;}
+a:visited{font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";color:#000099;}
+a:active {font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";color:#000099;}
+a:hover  {font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";color:#6666CC;}
+
+a.menu:link   {font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";text-decoration:none;font-size:11px;color:#000099;}
+a.menu:visited{font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";text-decoration:none;font-size:11px;color:#000066;}
+a.menu:active {font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";text-decoration:none;font-size:11px;color:#000099;}
+a.menu:hover  {font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";font-size:11px;color:#6666CC;text-decoration:underline;}
+
+A.main:link { font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";color : #003399; } 
+A.main:visited { font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif"; color : #003399; } 
+A.main:active { font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";color : #009900; } 
+A.main:hover { font-family:Verdana,Arial,Helvetica,sans-serif,"MS sans serif";color : #009900; } 
+
+body {background-color:#FFFFFF;font-family: Verdana, Arial, Helvetica, sans-serif, "MS sans serif";font-size:13px;font-weight:normal;color:#003399;}
+table {font-family:Verdana, Arial, Helvetica, sans-serif, "MS sans serif";font-size:13px;font-weight:normal;color:#003399;}
+
+	input {background-color:Aliceblue;}
+	H1 {text-decoration:none;color:orange;font-style:italic;}
+	.notDoneThing {background-color:Aliceblue;text-decoration:none;color:black;font-style:normal;}
+	.doneThing	{text-decoration:none;color:green;font-style:normal;}
+	.errorInput	{text-decoration:line-through;color:red;font-style:normal;}
+	.helpInput	{text-decoration:none;color:orange;font-style:italic;}
+	.hid {position:relative;display:'none';}
+	.unhid {position:relative;display:'block';}
+.instructs {position:relative;top:2%;XXleft:5%;
+		XXwidth:90%;background-color:aliceblue;
+		padding:2%; }
+.keyInstructs {position:relative;
+		width:80%;background-color:aliceblue; 
+		font-size: x-small;}
+	#scoreRight	{background-color: grey; }
+	#scoreWrong	{background-color: grey; }
+	#outof	{background-color: grey; }
+
+.normal { padding: 3px; width:460px;
+	 			border: 1px dotted #fff; color:#696969; }
+.hover { padding: 3px; width:460px; background-color:#F5F5F5;
+	 			border: 1px dotted #22B1E1; color:#000000; }

@@ -1,0 +1,11 @@
+.dotlink {   /* for dotted underlines */
+   color: black;
+   text-decoration:none;
+   border-bottom: 1px dashed blue;
+}
+a.dotlink:hover {
+   color: blue;
+   text-decoration:underline;
+   border-bottom: 0px;
+}
+#popUpDiv {z-index:200;display:none;position:absolute;text-align:center;background-color:yellow;}
