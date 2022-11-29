@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<style type="text/css">
+	.prefilled {background-color:yellow;}
+	.emptycell {background-color:white;}
+	.errorentry {background-color:red;font-weight:bold;}
+	input {align:center;}
+	.buttonclass {color:blue;background-color:yellow;border 0.25em groove blue;}
+</style>
+<script language="javaScript">
+var inps="";
+function init(){
+	inps= document.getElementsByName("sq");
+
+	for (var i = 0; i < inps.length; i++) {
+	   inps[i].value= '';
+	   	inps[i].className= "emptycell";
+	}
+}
+function SmallSquareCornerOf(n){
+	return smallSquareNumberOf(n)*9;
+}
+function colStartOf(n){
+// big square has 9 small squares.
+// in THIS small square what is the number of the
+// cell that starts the column containing n?
+	return ((n-(9*smallSquareNumberOf(n)))%3)+(smallSquareNumberOf(n)%3)*9;
+}
+function smallSquareNumberOf(n){
+// return small sq no where top left=0, top centre=1, top right=2 centre left=3..
+	return Math.floor(n/9);
+}
+function rowStartOf(n){
+var x= (n-n%3)-SmallSquareCornerOf(n);
+// x is 3 times the distance this row starts from small
+// square start, ie is 0 3 or 6
+var bigRow= Math.floor(smallSquareNumberOf(n)/3); // 0 1 or 2
+return bigRow*27+x;
+}
+function restOfRowFor(n){
+// return array of indeces of all other squares in this row
+	var rowstart= rowStartOf(n);
+	return new Array(rowstart, rowstart+1, rowstart+2,rowstart+9,rowstart+10,rowstart+11,rowstart+18, rowstart+19,rowstart+20);
+}
+function restOfColFor(n){
+// return array of indeces of all other squares in this col
+ var colstart= colStartOf(n);
+ 	return new Array(colstart,colstart+3,colstart+6,
+ 	colstart+27,colstart+30,colstart+33,
+ 	colstart+54,colstart+57,colstart+60);
+}
+function restOfSmallSquareFor(n) {
+// return array of indeces of all other squares in this small square
+	var sqstart= SmallSquareCornerOf(n);
+	var x= new Array(9);
+	for (var i=0;i<+9;i++)
+		x[i]= sqstart+i;
+	return x;
+}
+
+function OKtoPlace(i,vec){
+// return true iff i is not a value in any of array vec
+
+	for (var veci=0;veci<9;veci++) {
+		if (inps[vec[veci]].value==i) {
+			return false;
+		}
+	}
+	return true;
+}
+function canFillSquare(n,i){
+// return true if can put value i in square n
+
+		if (OKtoPlace(i,restOfRowFor(n)) &&
+		    OKtoPlace(i,restOfColFor(n)) &&
+		    OKtoPlace(i,restOfSmallSquareFor(n))) {
+		    	inps[n].value= i; return true;
+		}
+	return false;
+}
+
+function canCompleteFrom(n){
+// if n>80 return true as all finished
+// if n is "prefilled" return whether can complete from n+1
+// if can complete square n without clash with existing values
+// result is if can complete from n+1 else return false.
+var i=0;
+	if (n>80) return true;
+	if (inps[n].className=="prefilled") return canCompleteFrom(n+1);
+	for (i=1;i<=9;i++)
+		if (canFillSquare(n,i) && canCompleteFrom(n+1)) return true;
+	inps[n].value= '';
+	return false;
+}
+function doit(){
+// check all squares and set pre-filled in squares to class "prefilled"
+// so we know to leave them as they are.
+var temp=""; // to hold values while checked.
+	for (var i= 0; i < inps.length; i++) {
+	   temp= inps[i].value;
+	   if (!temp=='')
+	   { 	inps[i].className= "prefilled";
+	   		if (isNaN(temp) || (temp<0) || (temp>9)){
+	   			inps[i].className= "errorentry";
+	   			alert("This isn't a number between 1 and 9:\nyour starting entries are illegal!\nCan't continue.");
+	   			return;
+	   		}
+	   		inps[i].value='';
+	   		if (!canFillSquare(i,temp)) {
+	   			inps[i].className= "errorentry";
+	   			inps[i].value= temp;
+	   			alert("There is a clash:\nyour starting entries are illegal!\nCan't continue.");
+	   			return;
+	   		}
+	   	}
+	}
+alert(canCompleteFrom(0)?"I did it!":"Can't be done...");
+}
+function clearall(){
+	for (var i= 0; i < inps.length; i++) {
+	   inps[i].value= '';
+	   inps[i].className= "emptycell";
+	}
+}
+</script>
+</HEAD>
+
+<BODY onLoad="init();">
+<form name="f1">
+<table  border="1" cellspacing="0" cellpadding="0">
+<tr>
+  <td>
+	<table>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	</table>
+  </td>
+    <td>
+  	<table>
+  	  <tr align="center" valign="middle">
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  	  </tr>
+  	  <tr align="center" valign="middle">
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  	  </tr>
+  	  <tr align="center" valign="middle">
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  	  </tr>
+  	</table>
+    </td>
+  <td>
+	<table>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	</table>
+  </td>
+</tr><tr>
+  <td>
+	<table>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	</table>
+  </td>
+    <td>
+  	<table>
+  	  <tr align="center" valign="middle">
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  	  </tr>
+  	  <tr align="center" valign="middle">
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  	  </tr>
+  	  <tr align="center" valign="middle">
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  	  </tr>
+  	</table>
+    </td>
+  <td>
+	<table>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	</table>
+  </td>
+</tr><tr>
+  <td>
+	<table>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	</table>
+  </td>
+    <td>
+  	<table>
+  	  <tr align="center" valign="middle">
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  	  </tr>
+  	  <tr align="center" valign="middle">
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  	  </tr>
+  	  <tr align="center" valign="middle">
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  		<td><input name="sq" type="text" size="2"/></td>
+  	  </tr>
+  	</table>
+    </td>
+  <td>
+	<table>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+		<td><input name="sq" type="text" size="2"/></td>
+	  </tr>
+	</table>
+  </td>
+</tr>
+</table>
+<br clear="all">
+<p>
+Fill in values you want to start with and press the button:
+<br/>
+
+<input type="button" class="buttonclass" value="Go!" onClick="doit();">
+<br/><input type="button" class="buttonclass" value="Clear" onClick="clearall();">
+</p>
+</form>
+</BODY>
+</HTML>
