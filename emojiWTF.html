@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<style>  
+	* { text-align: center; }
+	div { font-size: 2.5em; } /* 40px/16=2.5em */
+</style>
+    <script src="emojilist.js"></script>
+    <script language="javascript">
+
+    function trial(ach){
+        // program to find the ASCII value of a character
+        // convert into ASCII value
+        ach= ach.trim(); // get rid of possible spaces at start
+		const result1 = ach.codePointAt(0);
+		document.getElementById("demo").innerHTML= ach+"<br/>";
+        if (result1<256) {
+			document.getElementById("demo").innerHTML+= "Not an emoji!"
+		} else 
+			if (myemojilist.includes(ach)) {
+				posn= myemojilist.lastIndexOf(ach);         
+				document.getElementById("demo").innerHTML+= myemojilist[posn+1]+"<br/>";
+			} else {
+				document.getElementById("demo").innerHTML+= "don't know that one ("+ach+")<br/>"
+			}    
+		f1.ach.value="";
+    } 
+	
+     </script>
+  </head>
+  
+  <body>
+
+	<form name="f1">
+		WTF? <input type="text" name="ach" size="1" value="" onpaste="var e=this; setTimeout(function(){trial(e.value);}, 1);" onchange="trial(this.value)">
+   <!--  <button onclick="trial(ach.value);return false">WTF?</button> -->
+		<p><hr></p>
+	</form>
+	<div id="demo" >  </div>
+  </body>
+</html>
