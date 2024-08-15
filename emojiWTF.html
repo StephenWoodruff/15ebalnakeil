@@ -3,8 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>  
-	* { text-align: center; }
-	div { font-size: 2em; } 
+	div { font-size: 1.25em; } 
 </style>
     <script src="emojilist.js"></script>
     <script language="javascript">
@@ -15,7 +14,7 @@
 		"normally used as an insult, we recommend you delete this emoji immediately",
 		" emoji indicates the remainder of the sentence is untrue",
 		"emoji reserved for use on Tuesday afternoons"]
-	const sarkyend= ".<br/>In the unlikely event that this is not the case please mail the emoji to Steve so he can fix it.";
+	const sarkyend= " (in the unlikely event that this is not the case please mail the emoji to Steve so he can fix it)";
     
 	function randomIndexOf(txt) {
 		return Math.floor(Math.random()*txt.length)
@@ -23,18 +22,23 @@
 	function trial(ach){
 	    // program to find the ASCII value of a character
         // convert into ASCII value
-        ach= ach.trim(); // get rid of possible spaces at start
-		const result1 = ach.codePointAt(0);
-		document.getElementById("demo").innerHTML= ach+"<br/>";
-        if (result1<256) {
-			document.getElementById("demo").innerHTML+= "Not an emoji!"
-		} else 
-			if (myemojilist.includes(ach)) {
-				posn= myemojilist.lastIndexOf(ach);         
-				document.getElementById("demo").innerHTML+= myemojilist[posn+1]+"<br/>";
-			} else {
-				document.getElementById("demo").innerHTML+= ach+" - "+sarky[randomIndexOf(sarky)]+sarkyend+"<br/>"
-			}    
+        document.getElementById("demo").innerHTML= ""
+		ach= ach.normalize().trimEnd().trimStart(); // get rid of possible spaces at start
+		achlen= Array.from(ach).length;
+		for (let i of ach) {
+			thech= i;  //Array.from(i[0])
+			if (thech<"~".normalize()) { // was result1
+				document.getElementById("demo").innerHTML+= " ["+thech+"]<br>"
+			} else if (thech<"".normalize()) { // was result1
+				document.getElementById("demo").innerHTML+= " [NIL]"
+			} else 
+				if (myemojilist.includes(thech)) {
+					posn= myemojilist.lastIndexOf(thech);         
+					document.getElementById("demo").innerHTML+= thech+" - "+myemojilist[posn+1]+"<br/>";
+				} else {
+					document.getElementById("demo").innerHTML+= " ["+thech+"] - dunno<br/>"
+				}   
+		}
 		f1.ach.value="";
     } 
 	
@@ -44,13 +48,12 @@
   <body>
 
 	<form name="f1">
-		WTF? <input type="text" name="ach" size="1" value="" onpaste="var e=this; setTimeout(function(){trial(e.value);}, 1);" onchange="trial(this.value)">
-   <!--  <button onclick="trial(ach.value);return false">WTF?</button> -->
-		<p><hr></p>
+		type or paste an emoji or so: <input type="text" name="ach" size="5" value="">
+		<button onclick="trial(ach.value);return false">WTF?</button>
+	 <!--	onpaste="var e=this; setTimeout(function(){trial(e.value);}, 1);" onchange="trial(this.value)">
+    <button onclick="trial(ach.value);return false">WTF?</button> -->
 	</form>
-	<p>
-	paste an emoji in above
-	</p>
+	<p>&nbsp;</p>
 	<div id="demo" >  </div>
   </body>
 </html>
