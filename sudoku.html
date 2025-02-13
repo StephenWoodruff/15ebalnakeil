@@ -20,6 +20,8 @@ function init(){
 	   inps[i].value= '';
 	   	inps[i].className= "emptycell";
 	}
+	currentSq= document.getElementById("1");
+	document.getElementById("1").focus();
 }
 function SmallSquareCornerOf(n){
 	return smallSquareNumberOf(n)*9;
@@ -125,199 +127,217 @@ function clearall(){
 	   inps[i].value= '';
 	   inps[i].className= "emptycell";
 	}
+	currentSq= document.getElementById("1");
+	document.getElementById("1").focus();
+}
+var currentSq;
+function focused(elem){
+	currentSq= elem;
+}
+function goleft(){
+// move focus to element to left unless this is leftmost, when move focus to end
+	var target;
+	var currindex= parseInt(currentSq);
+	target= (currindex>1?currindex-1:81);
+	document.getElementById(target).focus();
+}
+function goright(){
+// move focus to element to left unless this is leftmost, when move focus to end
+	var target;
+	var currindex= parseInt(currentSq);
+	target= (currindex<81?currindex+1:1);
+	document.getElementById(target).focus();
+}
+function goup(){
+// move focus to element to left unless this is leftmost, when move focus to end
+	var target;
+	var currindex= parseInt(currentSq);
+	target= (currindex>=10?currindex-9:currindex+72);
+	document.getElementById(target).focus();
+}
+function godown(){
+// move focus to element to left unless this is leftmost, when move focus to end
+	var target;
+	var currindex= parseInt(currentSq);
+	target= (currindex<=72?currindex+9:currindex-72);
+	document.getElementById(target).focus();
+}
+function showid(){
+	for (var i=1;i<82;i++) document.getElementById(i).value= i;
 }
 </script>
 </HEAD>
 
 <BODY onLoad="init();">
 <form name="f1" inputmode="numeric">
-<table  border="1" cellspacing="0" cellpadding="0">
-<tr>
-  <td>
-	<table>
+
+<table  border="1" cellspacing="0" cellpadding="0"><tr>  <td>	<table>	  <tr align="center" valign="middle">		<td><input name="sq" id="1"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="2"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="3"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	  
+	  <tr align="center" valign="middle">		
+		<td><input name="sq" id="10"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="11"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="12"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	  
+	  <tr align="center" valign="middle">		
+		<td><input name="sq" id="19"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="20"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="21"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	
+	  </table>  </td>    
+	  <td>  	
+	  <table>  	  
 	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx6" inputmode="numeric" pattern="[0-9]{2}" type="text" size="2"/></td>
-		<td><input name="sq" id="inx7" inputmode="numeric" pattern="[0-9]{2}" type="text" size="2"/></td>
-		<td><input name="sq" id="inx8" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx11" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx12" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx13" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx16" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx17" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx18" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	</table>
-  </td>
-    <td>
-  	<table>
-  	  <tr align="center" valign="middle">
-  		<td><input name="sq" id="inx25" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx26" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx27" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  <td><input name="sq" id="4"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="5"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="6"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  	  </tr>
+  	  <tr align="center" valign="middle"> 
+	  <td><input name="sq" id="13"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="14"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="15"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
   	  </tr>
   	  <tr align="center" valign="middle">
-  		<td><input name="sq" id="inx30" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx31" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx32" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  <td><input name="sq" id="22"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="23"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="24"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
   	  </tr>
+	  </table>
+	  </td>  <td>	<table>
+	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="7"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="8"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="9"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="16"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="17"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="18"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>
+	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="25"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="26"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="27"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	</table>
+	  </td></tr><tr>
+	  <td>	<table>
+	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="28"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="29"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="30"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="37"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="38"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="39"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	
+	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="46"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="47"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="48"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	</table>
+	  </td>
+	  <td>
+	  <table>
   	  <tr align="center" valign="middle">
-  		<td><input name="sq" id="inx35" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx36" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx37" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  <td><input name="sq" id="31"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="32"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="33"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
   	  </tr>
-  	</table>
-    </td>
-  <td>
-	<table>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx44" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx45" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx46" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx49" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx50" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx51" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx54" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx55" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx56" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	</table>
-  </td>
-</tr><tr>
-  <td>
-	<table>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx64" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx65" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx66" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx69" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx70" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx71" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx74" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx75" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx76" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	</table>
-  </td>
-    <td>
-  	<table>
-  	  <tr align="center" valign="middle">
-  		<td><input name="sq" id="inx83" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx84" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx85" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  	  <tr align="center" valign="middle"> 
+	  <td><input name="sq" id="40"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="41"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="42"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  	  </tr> 
+ 	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="49"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="50"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="51"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		
   	  </tr>
-  	  <tr align="center" valign="middle">
-  		<td><input name="sq" id="inx88" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx89" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx90" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  	  </tr>
-  	  <tr align="center" valign="middle">
-  		<td><input name="sq" id="inx93" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx94" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx95" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  	  </tr>
-  	</table>
-    </td>
-  <td>
-	<table>
+	  </table>
+	  </td>  <td>
+	  <table>
 	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx102" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx103" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx104" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  <td><input name="sq" id="34"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="35"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="36"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
 	  </tr>
 	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx107" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx108" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx109" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  <td><input name="sq" id="43"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="44"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="45"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
 	  </tr>
 	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx112" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx113" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx114" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	</table>
-  </td>
-</tr><tr>
-  <td>
-	<table>
+	  <td><input name="sq" id="52"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="53"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="54"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		
+	  </tr>	</table>
+	  </td></tr><tr>  <td>
+	  <table>
 	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx122" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx123" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx124" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
+	  <td><input name="sq" id="55"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="56"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="57"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="64"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="65"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="66"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	
 	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx127" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx128" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx129" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
+	  <td><input name="sq" id="73"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="74"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="75"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	</table>
+	  </td>    <td>  	<table> 
+ 	  <tr align="center" valign="middle"
+	  >  		<td><input name="sq" id="58"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="59"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="60"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		
+  	  </tr>  	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="67"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="68"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="69"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  	  </tr>  	  
 	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx132" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx133" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx134" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	</table>
-  </td>
-    <td>
-  	<table>
-  	  <tr align="center" valign="middle">
-  		<td><input name="sq" id="inx141" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx142" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx143" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  	  </tr>
-  	  <tr align="center" valign="middle">
-  		<td><input name="sq" id="inx146" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx147" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx148" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  	  </tr>
-  	  <tr align="center" valign="middle">
-  		<td><input name="sq" id="inx151" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx152" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  		<td><input name="sq" id="inx153" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-  	  </tr>
-  	</table>
-    </td>
-  <td>
-	<table>
+	  <td><input name="sq" id="76"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="77"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  		<td><input name="sq" id="78"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+  	  </tr>  	</table>
+	  </td>  <td>	
+	  <table>
 	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx160" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx161" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx162" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx165" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx166" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx167" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	  <tr align="center" valign="middle">
-		<td><input name="sq" id="inx170" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx171" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-		<td><input name="sq" id="inx172" inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
-	  </tr>
-	</table>
-  </td>
-</tr>
-</table>
+	  <td><input name="sq" id="61"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="62"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="63"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="70"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="71"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="72"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	  <tr align="center" valign="middle">
+	  <td><input name="sq" id="79"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="80"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+		<td><input name="sq" id="81"onfocus="focused(this.id)"  inputmode="numeric" pattern="[0-9]*" type="text" size="2"/></td>
+	  </tr>	</table>  </td></tr></table>
 
 <br clear="all">
 <p>
+<input type="button" value="left" onclick="goleft()">
+<input type="button" value="right" onclick="goright()">
+<input type="button" value="up" onclick="goup()">
+<input type="button" value="down" onclick="godown()">
+<br/>
 Fill in values you want to start with and press the button:
 <br/>
-
 <input type="button" class="buttonclass" value="Go!" onClick="doit();">
 <hr/>
-<br/><input type="button" class="buttonclass" value="Clear" onClick="clearall();">
-</p>
+<br/><input type="button" class="buttonclass" value="Clear all" onClick="clearall();">
+<hr/>
+<!-- <br/><input type="button" class="buttonclass" value="show ids" onClick="showid();">
+ -->
+ </p>
 </form>
 </BODY>
 </HTML>
