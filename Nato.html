@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATO Phonetic Alphabet Trainer</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom class for a smooth transition */
+        .transition-all-smooth {
+            transition: all 0.3s ease-in-out;
+        }
+		.gobutton {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.bordered {   border-style: solid;
+  border-color: red;
+  }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100">
+
+    <div class="min-h-screen w-full flex flex-col items-center justify-center p-4 select-none">
+        <!-- Initial Screen (initially visible) -->
+        <div id="initial-container" class="text-center">
+            <h1 class="text-5xl md:text-7xl font-bold text-green-500">NATO Phonetic Alphabet Training</h1>
+			<p>&nbsp;</p>
+			<p>You'll see a letter. Think of its phonetic word, then click</p>
+			<p>If you got it, click <b>OK</b>, if you couldn't remember click <b>No</b>, if you had to think about it click <b>Mmm</b>: these determine how often the letter gets repeated</p>
+			<p>&nbsp;</p>
+			<button class="gobutton" onClick="init()">START</button>
+        </div>
+
+        <!-- Main container for the app, handles clicks -->
+        <div id="main-container" class="hidden cursor-pointer bordered" >
+            <!-- Letter Display -->
+            <div id="letter-display" class="text-[25vw] md:text-[20vw] lg:text-[15rem] font-black leading-none text-center transition-all-smooth">
+                <!-- Letter will be inserted here -->
+            </div>
+
+            <!-- Word and Buttons Container (initially hidden) -->
+            <div id="answer-container" class="text-center h-48 mt-4 hidden">
+                <!-- NATO Word Display -->
+                <div id="word-display" class="text-4xl md:text-6xl font-bold text-indigo-600 dark:text-indigo-400 transition-all-smooth">
+                    <!-- Word will be inserted here -->
+                </div>
+
+                <!-- Response Buttons -->
+                <div id="button-container" class="mt-8 flex justify-center space-x-4">
+                    <button data-response="OK" class="response-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-10 rounded-lg shadow-lg transform hover:scale-105 transition-all-smooth">OK</button>
+                    <button data-response="Mmm" class="response-btn bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-10 rounded-lg shadow-lg transform hover:scale-105 transition-all-smooth">Mmm</button>
+                    <button data-response="NO" class="response-btn bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-10 rounded-lg shadow-lg transform hover:scale-105 transition-all-smooth">NO</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Screen (initially hidden) -->
+        <div id="completion-screen" class="hidden text-center">
+            <h1 class="text-5xl md:text-7xl font-bold text-green-500">Well Done Katja!</h1>
+			<p>&nbsp;</p>
+			<button class="gobutton" onClick="init()">Again!</button>
+        </div>
+    </div>
+
+    <script>
+        // --- NATO Alphabet Data (Constant) ---
+        const natoAlphabet = [
+            { letter: 'A', word: 'Alfa' }, { letter: 'B', word: 'Bravo' },
+            { letter: 'C', word: 'Charlie' }, { letter: 'D', word: 'Delta' },
+            { letter: 'E', word: 'Echo' }, { letter: 'F', word: 'Foxtrot' },
+            { letter: 'G', word: 'Golf' }, { letter: 'H', word: 'Hotel' },
+            { letter: 'I', word: 'India' }, { letter: 'J', word: 'Juliett' },
+            { letter: 'K', word: 'Kilo' }, { letter: 'L', word: 'Lima' },
+            { letter: 'M', word: 'Mike' }, { letter: 'N', word: 'November' },
+            { letter: 'O', word: 'Oscar' }, { letter: 'P', word: 'Papa' },
+            { letter: 'Q', word: 'Quebec' }, { letter: 'R', word: 'Romeo' },
+            { letter: 'S', word: 'Sierra' }, { letter: 'T', word: 'Tango' },
+            { letter: 'U', word: 'Uniform' }, { letter: 'V', word: 'Victor' },
+            { letter: 'W', word: 'Whiskey' }, { letter: 'X', word: 'X-ray' },
+            { letter: 'Y', word: 'Yankee' }, { letter: 'Z', word: 'Zulu' }
+        ]; 
+
+
+		const retriesOnNo= 4;
+		const retriesOnMmm= 3;
+		
+        // --- DOM Element References ---
+        const initialContainer = document.getElementById('initial-container');
+		const mainContainer = document.getElementById('main-container');
+        const letterDisplay = document.getElementById('letter-display');
+        const answerContainer = document.getElementById('answer-container');
+        const wordDisplay = document.getElementById('word-display');
+        const responseButtons = document.querySelectorAll('.response-btn');
+        const completionScreen = document.getElementById('completion-screen');
+
+        // --- State Variables ---
+        let learningDeck = [];
+        let recentlyShownLetters = []; // Stores last 3 letters to enforce spacing
+        let currentEntry = null;
+        let isAnswerShown = false;
+
+        // --- Core Functions ---
+
+		function init(){
+			// hide initial screen, show main
+			initialContainer.classList.add('hidden');
+			completionScreen.classList.add('hidden');
+			mainContainer.classList.remove('hidden');
+			setupGame();
+		}
+		
+        /**
+         * Sets up the initial state of the learning deck.
+         * Each letter must be shown at least once.
+         */
+        function setupGame() {
+            learningDeck = natoAlphabet.map(item => ({
+                ...item,
+                timesToShow: 1, // All letters must be shown at least once initially
+            }));
+            recentlyShownLetters = [];
+            showNewLetter();
+        }
+
+        /**
+         * Chooses and displays the next letter based on the learning rules.
+         */
+        function showNewLetter() {
+            // First, check if there are any letters left to show.
+            const lettersNeedingPractice = learningDeck.filter(item => item.timesToShow > 0);
+
+            if (lettersNeedingPractice.length === 0) {
+                showCompletionScreen();
+                return;
+            }
+
+            // Find candidates that are eligible to be shown now.
+            // Rule: A letter cannot be shown if it was one of the last retriesOnNo letters.
+            let eligibleCandidates = lettersNeedingPractice.filter(
+                item => !recentlyShownLetters.includes(item.letter)
+            );
+            
+            // If all letters needing practice have been shown recently, we must pick a "spacer".
+            // A spacer is a "learned" letter (timesToShow: 0) that also respects the spacing rule.
+            if (eligibleCandidates.length === 0) {
+                const learnedLetters = learningDeck.filter(item => item.timesToShow === 0);
+                const validSpacers = learnedLetters.filter(item => !recentlyShownLetters.includes(item.letter));
+                
+                if (validSpacers.length > 0) {
+                    eligibleCandidates = validSpacers;
+                } else {
+                    // This is an edge case, e.g., if there are fewer than 4 letters total.
+                    // In this case, we relax the spacing rule and just pick from any letter that needs practice.
+                    eligibleCandidates = lettersNeedingPractice;
+                }
+            }
+            
+            // Pick a random letter from the eligible candidates
+            currentEntry = eligibleCandidates[Math.floor(Math.random() * eligibleCandidates.length)];
+
+            // Update the list of recently shown letters (to enforce spacing)
+            recentlyShownLetters.push(currentEntry.letter);
+            if (recentlyShownLetters.length > retriesOnNo) {
+                recentlyShownLetters.shift(); // Keep only the last retriesOnNo (const initially 3)
+            }
+            
+            // Reset the UI for the new letter
+            isAnswerShown = false;
+            answerContainer.classList.add('hidden');
+            letterDisplay.textContent = currentEntry.letter;
+        }
+
+        /**
+         * Shows the NATO word for the current letter.
+         */
+        function showAnswer() {
+            if (isAnswerShown || !currentEntry) return;
+            isAnswerShown = true;
+            wordDisplay.textContent = currentEntry.word;
+            answerContainer.classList.remove('hidden');
+        }
+        
+        /**
+         * Processes the user's response (OK, Mmm, NO) and updates the deck.
+         * @param {string} response - The type of response from the button click.
+         */
+        function handleResponse(response) {
+            if (!currentEntry) return;
+
+            const entryInDeck = learningDeck.find(item => item.letter === currentEntry.letter);
+
+            // The current showing counts as one. Decrement the count.
+            entryInDeck.timesToShow = Math.max(0, entryInDeck.timesToShow - 1);
+            
+            // Add more required showings based on the response.
+            if (response === 'Mmm') {
+                entryInDeck.timesToShow= retriesOnMmm; // Needs retriesOnMmm (init 3) more showings
+            } else if (response === 'NO') {
+                entryInDeck.timesToShow= retriesOnNo; // Needs retriesOnNo (init 4) more showings
+            } else if (response === 'OK') {
+                entryInDeck.timesToShow= entryInDeck.timesToShow<=1?0:entryInDeck.timesToShow-1;  // reduce number of showings
+            }
+            
+            // Move to the next letter
+            showNewLetter();
+        }
+
+        /**
+         * Hides the main trainer and displays the completion message.
+         */
+        function showCompletionScreen() {
+            mainContainer.classList.add('hidden');
+            completionScreen.classList.remove('hidden');
+        }
+
+        // --- Event Listeners ---
+
+        // Listen for clicks on the main container to reveal the answer.
+        mainContainer.addEventListener('click', (event) => {
+            // Only trigger if the click is on the background, not on the buttons themselves
+            if (!event.target.closest('.response-btn')) {
+                showAnswer();
+            }
+        });
+
+        // Add event listeners to all three response buttons.
+        responseButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevents the main container click from firing too
+                const response = button.dataset.response;
+                handleResponse(response);
+            });
+        });
+
+        // --- Initial Load ---
+        // Setup and start the game when the page loads.
+        // TEMP window.onload = init;
+
+    </script>
+</body>
+</html>
